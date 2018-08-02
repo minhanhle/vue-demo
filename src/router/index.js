@@ -16,9 +16,13 @@ export default new Router({
       component: () => import('@/components/PageContent.vue'),
       children: [
         {
-          path: '/home',
-          name: 'home',
+          path: '/tours',
+          name: 'tours',
           component: () => import('@/components/Home.vue')
+        }, {
+          path: 'tours/:id',
+          name: 'detail',
+          component: () => import('@/components/Detail.vue')
         }
       ]
     }

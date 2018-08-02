@@ -7,11 +7,15 @@ import JQuery from 'jquery'
 import BootstrapVue from 'bootstrap-vue/dist/bootstrap-vue.esm'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+
 global.JQuery = JQuery
 global.$ = JQuery
 
-require('popper.js/dist/umd/popper')
-require('bootstrap/dist/js/bootstrap')
+library.add(faCheck)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 Vue.use(BootstrapVue)

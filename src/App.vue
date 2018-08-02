@@ -6,8 +6,10 @@
 </template>
 
 <script>
+import index from './store/index'
 export default {
-  name: 'App'
+  name: 'App',
+  store: index
 }
 </script>
 

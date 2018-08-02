@@ -6,7 +6,7 @@
             <form v-on:submit="login()">
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" v-model="email" required data-error="Email address is invalid">
+                    <input type="text" class="form-control" v-model="email" required data-error="Email address is invalid">
                     <div class="help-block with-errors"></div>
                 </div>
                 <div class="form-group">
@@ -37,9 +37,9 @@ export default {
   },
   methods: {
     login () {
-      if (this.email === 'anhl3m@gmail.com' && this.password === '123456') {
+      if (this.email === 'vuedemo' && this.password === '123456') {
         this.isError = false
-        this.$router.push({name: 'HelloWorld'})
+        this.$router.push({name: 'tours'})
       } else {
         this.isError = true
       }

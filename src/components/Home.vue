@@ -7,43 +7,59 @@
         <h1>{{item.content}}</h1>
       </b-carousel-slide>
     </b-carousel>
-    <div class="row">
-      <b-card title="Card Title"
-          img-src="https://picsum.photos/600/300/?image=25"
-          img-alt="Image"
-          img-top
-          tag="article"
-          style="max-width: 20rem;"
-          class="mb-2">
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the bulk of the card's content.
-        </p>
-        <b-button href="#" variant="primary">Go somewhere</b-button>
-      </b-card>
-    </div>
+    <div class="title">DANH SÁCH CÁC TOURS DU LỊCH</div>
+    <b-container fluid class="list-tours">
+      <b-row>
+        <b-col cols="6" md="3" v-for="(item, index) in listTours" :key="index">
+          <app-card @go="go($event)" :id="item.id" :title="item.name" :image="item.image" :price="item.price"></app-card>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
 
 <script>
+import Card from '@/components/Card.vue'
 import slides from '../data/slide.json'
-import tours from '../data/tours.json'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'HomePage',
+  components: {
+    'appCard': Card
+  },
   data () {
     return {
       slide: 0,
       sliding: null,
-      slides: slides,
-      tours: tours
+      slides: slides
     }
   },
+  computed: mapGetters(['listTours']),
   methods: {
     onSlideStart (slide) {
       this.sliding = true
     },
     onSlideEnd (slide) {
       this.sliding = false
+    },
+    ...mapActions(['addTour', 'deleteTour']),
+    go (id) {
+      this.$router.push({name: 'detail', params: {id: id}})
     }
   }
 }
 </script>
+
+<style>
+.list-tours {
+  padding-top: 0;
+}
+.title {
+  font-size: 2rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 2rem;
+  color: #2389b1;
+}
+</style>
